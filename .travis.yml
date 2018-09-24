@@ -1,6 +1,9 @@
 sudo:       required
 services:   docker
+env:
+  global:
+    - IS_TRAVIS=true
 
 script:
-- docker pull strauman/travis-latexbuild:small # small texlive scheme
-- docker run --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind strauman/travis-latexbuild:small # also here
+  - chmod +x travis-texbuild.sh
+  - ./.travis/travis-texbuild.sh
